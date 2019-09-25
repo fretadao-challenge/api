@@ -1,13 +1,28 @@
 require 'nokogiri'
 require 'open-uri'
 
-module Spyder
-  def self.parse
-    document = Nokogiri::HTML(open('https://www.twitter.com/neymarjr'))
+class Spyder
 
-    profile_username = document.css('.ProfileHeaderCard-screennameLink.u-linkComplex.js-nav
+  def initialize(http_address)
+    @document = Nokogiri::HTML(open(http_address))
+  end
+
+  def parse
+    profile = {
+                name: parse_username,
+                description: parse_description
+              }
+    profile
+  end
+
+  private
+
+  def parse_username
+    @document.css('.ProfileHeaderCard-screennameLink.u-linkComplex.js-nav
                                      .username.u-dir b.u-linkComplex-target').text
-    profile_description = document.css('.ProfileHeaderCard-bio.u-dir').text
+  end
 
+  def parse_description
+    @document.css('.ProfileHeaderCard-bio.u-dir').text
   end
 end
