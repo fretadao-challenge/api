@@ -9,7 +9,7 @@ class Spyder
 
   def parse
     profile = {
-                name: parse_username,
+                username: parse_username,
                 description: parse_description
               }
     profile

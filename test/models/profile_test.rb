@@ -7,9 +7,11 @@ class ProfileTest < ActiveSupport::TestCase
   end
 
   test 'should save valid profile' do
+    # FIMXE: Stub twitter url
     new_profile = Profile.new(name: 'Some Profile', twitter_url: 'twitter.com/asdf')
-    assert new_profile.save!
-    assert @profile.save
+
+    pp new_profile.twitter_url
+    assert new_profile.save
   end
 
   test 'should not save profile without name' do
