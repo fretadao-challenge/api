@@ -2,9 +2,7 @@ class Profile < ApplicationRecord
   validates :name, presence: true
   validates :twitter_url, presence: true
 
-  before_validation :smart_add_url_protocol
-
-  before_save :twitter_fetch
+  before_save :twitter_fetch, :smart_add_url_protocol
 
   def twitter_fetch
     info = Spyder.new(self.twitter_url)
