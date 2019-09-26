@@ -1,0 +1,42 @@
+#!/bin/bash
+
+bundle check || bundle install
+
+rm config/database.yml
+mv config/database.docker.yml config/database.yml
+
+function_postgres_ready() {
+ruby << END
+require 'pg'
+begin
+  PG.connect(user: "$PG_USERNAME", password: "$PG_PASSWORD", host: "$PG_HOST")
+rescue
+  exit -1
+else
+  exit 0
+end
+END
+}
+
+until function_postgres_ready; do
+  >&2 echo "POSTGRES IS UNAVAILABLE, SLEEP"
+  sleep 1
+done
+echo "POSTGRES IS UP, CONTINUE"
+
+if bundle exec rails db:exists; then
+  echo "RUNNING MIGRATIONS"
+  bundle exec rails db:migrate
+else
+  echo "SETTING THE DATABASE UP"
+  bundle exec rails db:create
+  bundle exec rails db:schema:load
+fi
+
+if [ -f $PIDFILE ] ; then
+  echo 'Server PID file exists. Removing it...'
+  rm $PIDFILE
+fi
+
+>&2 echo 'RUNNING SERVER'
+bundle exec rails server -p 3000 -b 0.0.0.0
