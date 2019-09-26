@@ -2,7 +2,7 @@
 
 bundle check || bundle install
 
-rm config/database.yml
+mv config/database.yml config/database.local.yml
 mv config/database.docker.yml config/database.yml
 
 function_postgres_ready() {
