@@ -8,6 +8,8 @@ services:
       - dev.env
     volumes:
       - pg-data:/var/lib/postgresql/data
+    networks:
+      - indexer-net
 
   api:
     container_name: indexer-api
@@ -15,6 +17,8 @@ services:
     command: ["sh","script/sh/entrypoint"]
     ports:
       - 3000:3000
+    networks:
+      - indexer-net
     env_file:
       - dev.env
     volumes:
@@ -26,3 +30,7 @@ services:
 volumes:
   pg-data:
   bundle-cache:
+
+networks: 
+  indexer-net:
+    name: indexer-net

@@ -2,7 +2,6 @@
 
 bundle check || bundle install
 
-mv config/database.yml config/database.local.yml
 mv config/database.docker.yml config/database.yml
 
 function_postgres_ready() {
@@ -35,7 +34,7 @@ fi
 
 if [ -f $PIDFILE ] ; then
   echo 'Server PID file exists. Removing it...'
-  rm $PIDFILE
+  rm $PIDFILE 
 fi
 
 >&2 echo 'RUNNING SERVER'
