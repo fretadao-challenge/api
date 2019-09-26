@@ -2,6 +2,7 @@ require "test_helper"
 
 class ProfileTest < ActiveSupport::TestCase
   setup do
+    mocks_spyder
     @profile = profiles(:one)
   end
 
@@ -9,7 +10,6 @@ class ProfileTest < ActiveSupport::TestCase
     # FIMXE: Stub twitter url
     new_profile = Profile.new(name: "Some Profile", twitter_url: "twitter.com/asdf")
 
-    pp new_profile.twitter_url
     assert new_profile.save
   end
 

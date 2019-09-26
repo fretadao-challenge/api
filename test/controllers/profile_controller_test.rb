@@ -2,6 +2,7 @@ require "test_helper"
 
 class ProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    mocks_spyder
     @profile = profiles(:one)
     @another_profile = profiles(:two)
   end
