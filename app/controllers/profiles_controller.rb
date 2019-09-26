@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
-
- before_action :set_profile, only: [:show, :update, :destroy]
+  before_action :set_profile, only: [:show, :update, :destroy]
 
   def index
     @profiles = Profile.all
@@ -36,11 +35,11 @@ class ProfilesController < ApplicationController
 
   private
 
-  def set_profile
-    @profile = Profile.find(params[:id])
-  end
+    def set_profile
+      @profile = Profile.find(params[:id])
+    end
 
-  def profile_params
-    params.require(:profile).permit(:name, :twitter_url)
-  end
+    def profile_params
+      params.require(:profile).permit(:name, :twitter_url)
+    end
 end

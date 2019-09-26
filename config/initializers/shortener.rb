@@ -1,3 +1,3 @@
-require 'shortener'
+require "shortener"
 
 Shortener.charset = :alphanumcase

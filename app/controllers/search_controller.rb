@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-
   def search
     query = params[:query]
     pp params
@@ -8,10 +7,8 @@ class SearchController < ApplicationController
                                 description ILIKE ?",
                                "%#{query}%",
                                "%#{query}%",
-                               "%#{query}%"
-                              ).uniq
+                               "%#{query}%").uniq
     search_results = find_query
     render json: search_results
   end
-
 end

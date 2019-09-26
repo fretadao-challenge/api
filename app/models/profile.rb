@@ -21,14 +21,13 @@ class Profile < ApplicationRecord
 
   protected
 
-  def smart_add_url_protocol
-    if self.twitter_url && !url_protocol_present?
-      self.twitter_url = "http://#{self.twitter_url}"
+    def smart_add_url_protocol
+      if self.twitter_url && !url_protocol_present?
+        self.twitter_url = "http://#{self.twitter_url}"
+      end
     end
-  end
 
-  def url_protocol_present?
-    self.twitter_url[/\Ahttp:\/\//] || self.twitter_url[/\Ahttps:\/\//]
-  end
-
+    def url_protocol_present?
+      self.twitter_url[/\Ahttp:\/\//] || self.twitter_url[/\Ahttps:\/\//]
+    end
 end
