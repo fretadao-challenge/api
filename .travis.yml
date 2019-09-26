@@ -1,0 +1,38 @@
+language: ruby
+
+rvm:
+  - 2.6.3
+
+services:
+  - postgres
+  - docker
+
+cache:
+  directories:
+   - $PWD/vendor/.bundle/
+
+install:
+  - bundle check --path vendor/.bundle/ || bundle install --path vendor/.bundle/
+  - bundle exec rails db:create
+  - bundle exec rails db:schema:load || bundle exec rails db:migrate
+
+env:
+  global:
+    - RAILS_ENV=test
+
+jobs:
+  include:
+    - name: "Models Tests"
+      script: bundle exec rails test:models
+    - name: "Integration Tests"
+      script: bundle exec rails test:integration
+    - name: "Controllers Tests"
+      script: bundle exec rails test:controllers
+    - name: "Rubocop Linter"
+      script: bundle exec rubocop
+    - name: "Docker Builds"
+      script: docker build -t mapknitter .
+
+branches:
+  only:
+    - master
