@@ -5,7 +5,11 @@ class UrlShortener
   include Shortener::ShortenerHelper
 
   def initialize
-    @host = ENV["HOST"] || "localhost:3000"
+    if Rails.env.production?
+      @host = "https://fretadao-api.herokuapp.com/"
+    else
+      @host = ENV["HOST"] || "localhost:3000"
+    end
   end
 
   def shorten_url(some_url)
