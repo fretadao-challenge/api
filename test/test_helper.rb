@@ -12,7 +12,7 @@ class ActiveSupport::TestCase
       username: "my-twitter-username",
       description: "My Twitter Description"
     }
-    spyder = mock('Spyder')
+    spyder = mock("Spyder")
     spyder.stubs(:parse).returns(expected_return)
     Spyder.stubs(:new).returns(spyder)
   end

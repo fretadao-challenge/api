@@ -1,7 +1,6 @@
 require "test_helper"
 
 class SearchControllerTest < ActionDispatch::IntegrationTest
-
   setup do
     mocks_spyder
     @profile = profiles(:one)
@@ -11,7 +10,7 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should search profile by name" do
-    get '/search', params: {
+    get "/search", params: {
       query: "Profile Silva"
     }
     assert_response :ok
@@ -21,7 +20,7 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should search profile by username" do
-    get '/search', params: {
+    get "/search", params: {
       query: "my-twitter-username"
     }
     assert_response :ok
@@ -31,7 +30,7 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should search profile by description" do
-    get '/search', params: {
+    get "/search", params: {
       query: "My Twitter Description"
     }
     assert_response :ok
