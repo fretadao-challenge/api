@@ -1,7 +1,6 @@
 require "test_helper"
 
 class UrlShortenerTest < ActiveSupport::TestCase
-
   setup do
     @url = "https://twitter.com/usefretadao"
   end
@@ -15,7 +14,6 @@ class UrlShortenerTest < ActiveSupport::TestCase
   end
 
   test "should redirect to correct API url" do
-
     Rails.env.expects(:production?).returns(true)
     shortener = UrlShortener.new
 

@@ -3,9 +3,7 @@ require "nokogiri"
 require "open-uri"
 
 class SpyderTest < ActiveSupport::TestCase
-  
-  test 'should parse twitter information' do
-
+  test "should parse twitter information" do
     username_and_description_html = <<~HEREDOC
       <h2 class="ProfileHeaderCard-screenname u-inlineBlock u-dir" dir="ltr">
         <a class="ProfileHeaderCard-screennameLink u-linkComplex js-nav">
@@ -21,8 +19,7 @@ class SpyderTest < ActiveSupport::TestCase
     spyder = Spyder.new(some_url)
     hashed_result = spyder.parse
 
-    assert_equal 'johndoe', hashed_result[:username]
-    assert_equal 'My awesome description', hashed_result[:description]
+    assert_equal "johndoe", hashed_result[:username]
+    assert_equal "My awesome description", hashed_result[:description]
   end
-
 end
