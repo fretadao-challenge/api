@@ -8,7 +8,7 @@ class UrlShortener
 
   def initialize
     if Rails.env.production?
-      @host = "https://fretadao-api.herokuapp.com/"
+      @host = "https://fretadao-api.herokuapp.com"
     else
       @host = ENV["HOST"] || "localhost:3000"
     end
