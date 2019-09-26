@@ -1,14 +1,22 @@
 class Profile < ApplicationRecord
+  has_shortened_urls
+
   validates :name, presence: true
   validates :twitter_url, presence: true
 
-  before_save :smart_add_url_protocol, :twitter_fetch
+  before_save :smart_add_url_protocol, :twitter_fetch, :shorten_twitter_url
 
   def twitter_fetch
     info = Spyder.new(self.twitter_url)
     parsed_info = info.parse
     self.username = parsed_info[:username]
     self.description = parsed_info[:description]
+  end
+
+  def shorten_twitter_url
+    shortener = UrlShortener.new
+    shortened_url = shortener.shorten_url(self.twitter_url)
+    self.twitter_url = shortened_url
   end
 
   protected
