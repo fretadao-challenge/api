@@ -15,8 +15,8 @@ class Profile < ApplicationRecord
 
   def shorten_twitter_url
     shortener = UrlShortener.new
-    shortened_url = shortener.shorten_url(self.twitter_url)
-    self.twitter_url = shortened_url
+    new_shortened_url = shortener.shorten_url(self.twitter_url)
+    self.shortened_url = new_shortened_url
   end
 
   protected

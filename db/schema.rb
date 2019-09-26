@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_023948) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.text "description"
+    t.string "shortened_url"
   end
 
   create_table "shortened_urls", force: :cascade do |t|
