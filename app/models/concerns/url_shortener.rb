@@ -1,6 +1,8 @@
 require "shortener"
 
 class UrlShortener
+  attr_reader :host
+
   include Rails.application.routes.url_helpers
   include Shortener::ShortenerHelper
 
