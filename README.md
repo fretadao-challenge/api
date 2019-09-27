@@ -1,24 +1,3 @@
-# README
+## Everything there is know about BackEnd and FrontEnd are in this repository below:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### [https://github.com/fretadao-challenge/docs](https://github.com/fretadao-challenge/docs)
